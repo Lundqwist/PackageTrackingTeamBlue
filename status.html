@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snabb Leverans AB – Order Status</title>
+    <link rel="icon" href="data/package%20tracking%20logo%202.png.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header blue">
+    <div class="header-inner">
+        <a href="index.html" class="logo"><img src="data/package%20tracking%20logo%202.png.png" alt="Snabb Leverans logo"></a>
+        <div class="brand">
+            <h1>Snabb Leverans AB</h1>
+            <p data-i18n="tagline">Fast. Reliable. Everywhere.</p>
+        </div>
+        <div class="header-actions">
+            <button class="lang-toggle" type="button">EN / SV</button>
+            <a href="index.html" class="home-link">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 12h3v8h5v-5h4v5h5v-8h3L12 3z"/></svg>
+                <span data-i18n="home">Home</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="status-page">
+    <section class="card">
+        <div class="card-title">
+            <h2><span data-i18n="orderTitle1">Order</span> <span class="accent" data-i18n="orderTitle2">Status</span></h2>
+            <p data-i18n="statusText">Track your package in real-time</p>
+        </div>
+
+        <div class="status-grid">
+            <div id="map"></div>
+
+            <div>
+                <p class="status-message" id="statusMessage"></p>
+
+                <form class="field" id="orderForm">
+                    <label for="orderId" data-i18n="orderId">Order ID</label>
+                    <div class="input-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>
+                        <input type="text" id="orderId" placeholder="Enter Order ID" data-i18n-placeholder="enterOrderId" autocomplete="off">
+                    </div>
+                </form>
+
+                <div class="field">
+                    <span class="label" data-i18n="eta">Estimated Delivery Time</span>
+                    <div class="input-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                        <output id="eta" data-placeholder="e.g. 2026-10-26 14:00"></output>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <span class="label" data-i18n="currentLocation">Current Location</span>
+                    <div class="input-box">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+                        <output id="location" data-placeholder="e.g. Helsingborg"></output>
+                    </div>
+                </div>
+
+                <div class="details" id="details" hidden>
+                    <div>
+                        <span class="label" data-i18n="recipient">Recipient</span>
+                        <span id="recipientName"></span><br>
+                        <span id="recipientAddress"></span>
+                    </div>
+                    <div>
+                        <span class="label" data-i18n="sender">From</span>
+                        <span id="senderCompany"></span><br>
+                        <span id="senderAddress"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ol class="tracker" id="tracker">
+            <li><span class="dot"></span><span data-i18n="warehouse">In Warehouse</span></li>
+            <li><span class="dot"></span><span data-i18n="pickedUp">Picked Up</span></li>
+            <li><span class="dot"></span><span data-i18n="inTransit">In Transit</span></li>
+            <li><span class="dot"></span><span data-i18n="collectionPoint">At Collection Point</span></li>
+        </ol>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <span data-i18n="rights">© 2026 Snabb Leverans AB. All rights reserved.</span>
+        <nav class="footer-links">
+            <a href="#" data-i18n="help">Help</a>
+            <a href="#" data-i18n="contact">Contact Us</a>
+            <a href="#" data-i18n="terms">Terms of Use</a>
+            <a href="#" data-i18n="privacy">Privacy</a>
+        </nav>
+        <span data-i18n="moving">Moving a better tomorrow.</span>
+    </div>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="scripts/language.js"></script>
+<script src="scripts/login.js"></script>
+<script src="scripts/packagehandling.js"></script>
+<script src="scripts/maptracking.js"></script>
+<script>
+    const orderInput = document.getElementById("orderId");
+    const statusMessage = document.getElementById("statusMessage");
+
+    function setMessage(key) {
+        statusMessage.dataset.key = key || "";
+        statusMessage.textContent = key ? t(key) : "";
+    }
+
+    function clearPackage() {
+        document.getElementById("eta").textContent = "";
+        document.getElementById("location").textContent = "";
+        document.getElementById("details").hidden = true;
+        document.querySelectorAll("#tracker li").forEach(li => li.className = "");
+    }
+
+    function showPackage(pkg) {
+        setMessage(null);
+        orderInput.value = pkg.packageId;
+        document.getElementById("eta").textContent = formatDateTime(pkg.estimatedDelivery);
+        document.getElementById("location").textContent = pkg.currentLocation.name;
+        document.getElementById("recipientName").textContent = pkg.recipient.name;
+        document.getElementById("recipientAddress").textContent = pkg.recipient.address;
+        document.getElementById("senderCompany").textContent = pkg.from.company;
+        document.getElementById("senderAddress").textContent = pkg.from.address;
+        document.getElementById("details").hidden = false;
+
+        const statusIndex = getStatusIndex(pkg);
+        document.querySelectorAll("#tracker li").forEach((li, i) => {
+            li.className = i < statusIndex ? "done" : i === statusIndex ? "current" : "";
+        });
+
+        showPackageOnMap(pkg);
+        history.replaceState(null, "", "?id=" + encodeURIComponent(pkg.packageId));
+    }
+
+    function lookUp(id) {
+        const pkg = findPackage(id);
+        if (pkg) {
+            showPackage(pkg);
+        } else {
+            clearPackage();
+            setMessage("notFound");
+        }
+    }
+
+    initMap("map");
+
+    loadPackages()
+        .then(() => {
+            const id = new URLSearchParams(window.location.search).get("id");
+            if (id) {
+                lookUp(id);
+            }
+        })
+        .catch(() => setMessage("loadError"));
+
+    document.getElementById("orderForm").addEventListener("submit", event => {
+        event.preventDefault();
+        lookUp(orderInput.value);
+    });
+
+    document.addEventListener("languagechange", () => {
+        if (statusMessage.dataset.key) {
+            statusMessage.textContent = t(statusMessage.dataset.key);
+        }
+    });
+</script>
+
+</body>
+</html>

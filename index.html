@@ -3,17 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Snabb Leverans AB – Track Your Package</title>
+    <link rel="icon" href="data/package%20tracking%20logo%202.png.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
 
+<header class="site-header">
+    <div class="header-inner">
+        <a href="index.html" class="logo"><img src="data/package%20tracking%20logo%202.png.png" alt="Snabb Leverans logo"></a>
+        <div class="brand">
+            <h1>Snabb Leverans AB</h1>
+            <p data-i18n="tagline">Fast. Reliable. Everywhere.</p>
+        </div>
+        <div class="header-actions">
+            <button class="lang-toggle" type="button">EN / SV</button>
+        </div>
+    </div>
+</header>
 
+<main>
+    <section class="hero">
+        <svg class="skyline" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+            <g fill="#b9cdeb" opacity="0.55">
+                <rect x="10" y="60" width="28" height="160"/><rect x="42" y="100" width="40" height="120"/>
+                <rect x="90" y="30" width="22" height="190"/><rect x="118" y="120" width="50" height="100"/>
+                <rect x="175" y="80" width="30" height="140"/><rect x="210" y="140" width="45" height="80"/>
+                <rect x="900" y="110" width="40" height="110"/><rect x="945" y="50" width="26" height="170"/>
+                <rect x="976" y="130" width="48" height="90"/><rect x="1030" y="70" width="32" height="150"/>
+                <rect x="1068" y="20" width="24" height="200"/><rect x="1098" y="100" width="46" height="120"/>
+                <rect x="1150" y="60" width="40" height="160"/>
+            </g>
+        </svg>
 
+        <h2><span data-i18n="trackTitle1">Track Your</span> <span class="accent" data-i18n="trackTitle2">Package</span></h2>
+        <p class="hero-text" data-i18n="heroText">Enter your Order ID below to display delivery status and track progress on our interactive map.</p>
 
+        <form class="search-form" id="trackForm">
+            <label class="search-field">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M20 20l-4.5-4.5"/></svg>
+                <input type="text" id="orderInput" placeholder="Enter Order ID" data-i18n-placeholder="enterOrderId" autocomplete="off" required>
+            </label>
+            <button type="submit" class="btn-track">
+                <span data-i18n="track">Track</span>
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+            </button>
+        </form>
+        <p class="form-message" id="formMessage"></p>
+        <div class="sample-ids" id="sampleIds"><span data-i18n="tryIds">Try a sample ID:</span></div>
+
+        <div class="journey">
+            <div class="journey-line"></div>
+            <div class="journey-step">
+                <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#1556c9"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
+                <span data-i18n="closest">Closest to You</span>
+            </div>
+            <div class="journey-step">
+                <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#f26a1b"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
+                <span data-i18n="inTransit">In Transit</span>
+            </div>
+            <div class="journey-logo">
+                <img src="data/package%20tracking%20logo%202.png.png" alt="">
+            </div>
+            <div class="journey-step">
+                <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#f26a1b"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
+                <span data-i18n="outForDelivery">Out for Delivery</span>
+            </div>
+            <div class="journey-step">
+                <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#1556c9"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
+                <span data-i18n="delivered">Delivered</span>
+            </div>
+        </div>
+
+        <p class="slogan" data-i18n="slogan">From Your Nearest Hub to Your Door</p>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <span data-i18n="rights">© 2026 Snabb Leverans AB. All rights reserved.</span>
+        <nav class="footer-links">
+            <a href="#" data-i18n="help">Help</a>
+            <a href="#" data-i18n="terms">Terms of Use</a>
+            <a href="#" data-i18n="contact">Contact Us</a>
+            <a href="#" data-i18n="privacy">Privacy</a>
+        </nav>
+        <span data-i18n="moving">Moving a better tomorrow.</span>
+    </div>
+</footer>
+
+<script src="scripts/language.js"></script>
 <script src="scripts/login.js"></script>
-<script src="scripts/maptracking.js"></script>
-<script src="scripts/packagedata.js"></script>
+<script src="scripts/packagehandling.js"></script>
+<script>
+    const form = document.getElementById("trackForm");
+    const input = document.getElementById("orderInput");
+    const message = document.getElementById("formMessage");
+
+    // Show a few package ids from the JSON file as clickable examples
+    loadPackages()
+        .then(list => {
+            const container = document.getElementById("sampleIds");
+            list.slice(0, 4).forEach(pkg => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.textContent = pkg.packageId;
+                button.addEventListener("click", () => {
+                    input.value = pkg.packageId;
+                    form.requestSubmit();
+                });
+                container.appendChild(button);
+            });
+        })
+        .catch(() => {
+            message.dataset.key = "loadError";
+            message.textContent = t("loadError");
+        });
+
+    form.addEventListener("submit", async event => {
+        event.preventDefault();
+        try {
+            await loadPackages();
+        } catch (e) {
+            message.dataset.key = "loadError";
+            message.textContent = t("loadError");
+            return;
+        }
+        const pkg = findPackage(input.value);
+        if (pkg) {
+            window.location.href = "status.html?id=" + encodeURIComponent(pkg.packageId);
+        } else {
+            message.dataset.key = "notFound";
+            message.textContent = t("notFound");
+        }
+    });
+
+    document.addEventListener("languagechange", () => {
+        if (message.dataset.key) {
+            message.textContent = t(message.dataset.key);
+        }
+    });
+</script>
 
 </body>
 </html>
