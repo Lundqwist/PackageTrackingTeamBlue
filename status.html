@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!--
+  status.html - the "Order Status" page.
+  It reads the package id from the URL (status.html?id=SL-100234), looks the
+  package up in data/packages.json and shows it on a map, in the info fields
+  and in the 4-step progress tracker.
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +13,14 @@
     <link rel="icon" href="data/package%20tracking%20logo%202.png.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Leaflet's own CSS. Without it the map tiles and markers end up in the wrong places -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<!-- The class "blue" switches the header to the blue version (see style.css) -->
 <header class="site-header blue">
     <div class="header-inner">
         <a href="index.html" class="logo"><img src="data/package%20tracking%20logo%202.png.png" alt="Snabb Leverans logo"></a>
@@ -22,6 +31,7 @@
         <div class="header-actions">
             <button class="lang-toggle" type="button">EN / SV</button>
             <a href="index.html" class="home-link">
+                <!-- House icon. fill="currentColor" makes it the same color as the text -->
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 12h3v8h5v-5h4v5h5v-8h3L12 3z"/></svg>
                 <span data-i18n="home">Home</span>
             </a>
@@ -30,21 +40,28 @@
 </header>
 
 <main class="status-page">
+    <!-- The white card holding all the content -->
     <section class="card">
         <div class="card-title">
             <h2><span data-i18n="orderTitle1">Order</span> <span class="accent" data-i18n="orderTitle2">Status</span></h2>
             <p data-i18n="statusText">Track your package in real-time</p>
         </div>
 
+        <!-- Two columns: the map on the left, the info fields on the right -->
         <div class="status-grid">
+            <!-- Leaflet draws the map inside this empty div (see maptracking.js) -->
             <div id="map"></div>
 
             <div>
+                <!-- Error messages are written here by JavaScript -->
                 <p class="status-message" id="statusMessage"></p>
 
+                <!-- A form, so pressing Enter in the input looks up a new package -->
                 <form class="field" id="orderForm">
+                    <!-- for="orderId" connects the label to the input with id="orderId" -->
                     <label for="orderId" data-i18n="orderId">Order ID</label>
                     <div class="input-box">
+                        <!-- Box (package) icon -->
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>
                         <input type="text" id="orderId" placeholder="Enter Order ID" data-i18n-placeholder="enterOrderId" autocomplete="off">
                     </div>
@@ -53,7 +70,13 @@
                 <div class="field">
                     <span class="label" data-i18n="eta">Estimated Delivery Time</span>
                     <div class="input-box">
+                        <!-- Calendar icon -->
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                        <!--
+                          <output> is an element meant for showing a result. It looks like an
+                          input but the user can't type in it. data-placeholder is shown by CSS
+                          while it is empty (see ".input-box output:empty::before" in style.css).
+                        -->
                         <output id="eta" data-placeholder="e.g. 2026-10-26 14:00"></output>
                     </div>
                 </div>
@@ -61,11 +84,13 @@
                 <div class="field">
                     <span class="label" data-i18n="currentLocation">Current Location</span>
                     <div class="input-box">
+                        <!-- Location pin icon -->
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
                         <output id="location" data-placeholder="e.g. Helsingborg"></output>
                     </div>
                 </div>
 
+                <!-- "hidden" hides the element until JavaScript has a package to show -->
                 <div class="details" id="details" hidden>
                     <div>
                         <span class="label" data-i18n="recipient">Recipient</span>
@@ -81,6 +106,12 @@
             </div>
         </div>
 
+        <!--
+          The progress tracker. <ol> = ordered list, because the steps have an order.
+          JavaScript gives each <li> the class "done", "current" or nothing,
+          and the CSS colors the circles and lines based on that class.
+          The order of the <li> elements must match STATUSES in packagehandling.js.
+        -->
         <ol class="tracker" id="tracker">
             <li><span class="dot"></span><span data-i18n="warehouse">In Warehouse</span></li>
             <li><span class="dot"></span><span data-i18n="pickedUp">Picked Up</span></li>
@@ -103,6 +134,12 @@
     </div>
 </footer>
 
+<!--
+  Load order matters:
+  1. Leaflet first, because maptracking.js uses its "L" object.
+  2. Our own scripts.
+  3. The page code at the bottom, which uses functions from all of them.
+-->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="scripts/language.js"></script>
 <script src="scripts/login.js"></script>
@@ -112,11 +149,14 @@
     const orderInput = document.getElementById("orderId");
     const statusMessage = document.getElementById("statusMessage");
 
+    // Shows a translated message, or clears it when key is null.
+    // The key is saved in data-key so we can translate it again later.
     function setMessage(key) {
         statusMessage.dataset.key = key || "";
         statusMessage.textContent = key ? t(key) : "";
     }
 
+    // Empties all fields, e.g. when an unknown id is entered.
     function clearPackage() {
         document.getElementById("eta").textContent = "";
         document.getElementById("location").textContent = "";
@@ -124,9 +164,13 @@
         document.querySelectorAll("#tracker li").forEach(li => li.className = "");
     }
 
+    // Fills the page with the information from one package object.
     function showPackage(pkg) {
         setMessage(null);
         orderInput.value = pkg.packageId;
+
+        // textContent (not innerHTML) is used for data, so text from the JSON
+        // can never be run as HTML. This is a good security habit.
         document.getElementById("eta").textContent = formatDateTime(pkg.estimatedDelivery);
         document.getElementById("location").textContent = pkg.currentLocation.name;
         document.getElementById("recipientName").textContent = pkg.recipient.name;
@@ -135,15 +179,22 @@
         document.getElementById("senderAddress").textContent = pkg.from.address;
         document.getElementById("details").hidden = false;
 
+        // Color the tracker: steps before the current one are "done",
+        // the current step is "current", and later steps get no class (grey).
+        // forEach gives us both the element (li) and its position (i).
         const statusIndex = getStatusIndex(pkg);
         document.querySelectorAll("#tracker li").forEach((li, i) => {
             li.className = i < statusIndex ? "done" : i === statusIndex ? "current" : "";
         });
 
         showPackageOnMap(pkg);
+
+        // Update the URL in the address bar without reloading the page,
+        // so the link can be copied/bookmarked and shows the right package.
         history.replaceState(null, "", "?id=" + encodeURIComponent(pkg.packageId));
     }
 
+    // Looks up an id and either shows the package or an error message.
     function lookUp(id) {
         const pkg = findPackage(id);
         if (pkg) {
@@ -154,10 +205,12 @@
         }
     }
 
+    // Create the map straight away so it is visible while data is loading.
     initMap("map");
 
     loadPackages()
         .then(() => {
+            // URLSearchParams reads the "?id=..." part of the address.
             const id = new URLSearchParams(window.location.search).get("id");
             if (id) {
                 lookUp(id);
@@ -165,11 +218,13 @@
         })
         .catch(() => setMessage("loadError"));
 
+    // Pressing Enter in the Order ID field looks up that package.
     document.getElementById("orderForm").addEventListener("submit", event => {
-        event.preventDefault();
+        event.preventDefault(); // stop the page from reloading
         lookUp(orderInput.value);
     });
 
+    // Re-translate the error message when the language is switched.
     document.addEventListener("languagechange", () => {
         if (statusMessage.dataset.key) {
             statusMessage.textContent = t(statusMessage.dataset.key);

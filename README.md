@@ -1,0 +1,97 @@
+# Snabb Leverans AB – Package Tracking
+
+A small package tracking website built with plain **HTML, CSS and JavaScript** (no frameworks, no build step).
+Type in an Order ID and see where the package is on a map, when it will arrive, and how far along its journey it has come.
+
+The design is based on the mockups in the [data/](data/) folder.
+
+## Pages
+
+| Page | What it does |
+|------|--------------|
+| [index.html](index.html) | Start page. Enter an Order ID and press **Track**. |
+| [status.html](status.html) | Order status: map, estimated delivery time, current location, recipient/sender and a 4-step progress tracker. Opened as `status.html?id=SL-100234`. |
+
+Both pages have an **EN / SV** button to switch between English and Swedish.
+
+## How to run it
+
+The pages load package data with `fetch()`. Browsers block `fetch()` for files opened straight from disk (`file://...`), so the site has to be served by a small web server:
+
+- **VS Code:** install the *Live Server* extension, right-click `index.html` → **Open with Live Server**.
+- **Node.js:** run `npx serve` in the project folder and open the address it prints.
+- **Python:** run `python -m http.server` and open <http://localhost:8000>.
+
+Try one of these Order IDs: `SL-100234`, `SL-100587`, `SL-101342`, `SL-102118`, `SL-102905`, `SL-103466`, `SL-104020`, `SL-104771`.
+
+## Project structure
+
+```
+PackageTrackingTeamBlue/
+├── index.html              Start page
+├── status.html             Order status page
+├── css/
+│   └── style.css           All styles for both pages
+├── scripts/
+│   ├── packagehandling.js  Loads and searches the package data
+│   ├── maptracking.js      Draws the map and the package route (Leaflet)
+│   ├── language.js         English / Swedish translations
+│   └── login.js            Login (planned, not written yet)
+└── data/
+    ├── packages.json       Sample package data
+    └── *.png / *.jpg       Logo and design mockups
+```
+
+## How it works
+
+1. **index.html** – When you press *Track*, the page loads `data/packages.json`, searches for the ID and, if it exists, sends you to `status.html?id=<ID>`.
+2. **status.html** – Reads the ID from the URL, finds the package and:
+   - fills in the info fields,
+   - colors the progress tracker (`done` / `current` CSS classes),
+   - calls `showPackageOnMap()` to draw the route.
+3. **The map** shows the sender (blue dot), the current location (orange pin) and the recipient (grey dot). A solid line shows the distance already travelled and a dashed line shows what is left.
+
+Every file has comments explaining what the code does and why. They are written as a learning resource, so read through the code.
+
+## The package data
+
+The packages live in [data/packages.json](data/packages.json). JSON does not allow comments, so here is what each field means:
+
+```jsonc
+{
+  "packageId": "SL-100234",                 // the Order ID the user types in
+  "recipient": {                            // who receives the package
+    "name": "Anna Svensson",
+    "address": "Storgatan 12, 252 21 Helsingborg",
+    "latitude": 56.0465, "longitude": 12.6945
+  },
+  "from": {                                 // the company that sent it
+    "company": "Nordic Gear AB",
+    "address": "Industrivägen 5, 553 02 Jönköping",
+    "latitude": 57.7826, "longitude": 14.1618
+  },
+  "currentLocation": {                      // where the package is right now
+    "name": "Ljungby",
+    "latitude": 56.8333, "longitude": 13.9408
+  },
+  "currentStatus": "inTransit",             // warehouse | pickedUp | inTransit | collectionPoint
+  "estimatedDelivery": "2026-10-21T14:00"   // ISO date and time
+}
+```
+
+To add a package, copy one of the objects in the file, give it a new `packageId` and change the values. Remember the comma between objects. The data is made up.
+
+**Tip:** to find coordinates, right-click a place in Google Maps or on openstreetmap.org. The first number is the latitude, the second is the longitude.
+
+## Libraries and services used
+
+- [Leaflet 1.9.4](https://leafletjs.com) – interactive map (loaded from unpkg CDN)
+- [OpenStreetMap](https://www.openstreetmap.org) – map tiles
+- [Google Fonts](https://fonts.google.com) – *Plus Jakarta Sans* and *Caveat*
+
+## Ideas for next steps
+
+- Write the login in `scripts/login.js` (see the plan in the file's comment) and only show the map to logged-in users.
+- Add more statuses, e.g. *Out for Delivery* and *Delivered*.
+- Make the footer links (Help, Terms, Contact, Privacy) go to real pages.
+- Show a history list of the places the package has passed through.
