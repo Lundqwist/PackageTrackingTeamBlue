@@ -33,7 +33,7 @@ const translations = {
         enterOrderId: "Enter Order ID",
         track: "Track",
         tryIds: "Try a sample ID:",
-        closest: "Closest to You",
+        closest: "Warehouse",
         inTransit: "In Transit",
         outForDelivery: "Out for Delivery",
         delivered: "Delivered",
