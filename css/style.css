@@ -432,7 +432,7 @@ a {
   .journey-logo {
     position: relative;
     z-index: 1;
-    margin-top: -8px;
+    margin-top: 4px;
   }
  
   .journey-logo img {

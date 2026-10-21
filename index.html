@@ -7,6 +7,7 @@
   written at the bottom of this file and opened by scripts/modals.js.
 -->
 <html lang="en">
+
 <head>
     <!-- UTF-8 lets us use Swedish letters like å, ä, ö -->
     <meta charset="UTF-8">
@@ -19,79 +20,98 @@
 
     <!-- Fonts from Google Fonts: Plus Jakarta Sans for text, Caveat for the handwritten slogan -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Our own styles, shared by all pages -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<!-- ===== HEADER: logo, company name and language button ===== -->
-<header class="site-header blue">
-    <div class="header-inner">
-        <!-- alt text is read by screen readers and shown if the image fails to load -->
-        <a href="index.html" class="logo"><img src="data/logo1.png" alt="Snabb Leverans logo"></a>
-        <div class="brand">
-            <h1>Snabb Leverans AB</h1>
-            <!-- data-i18n="tagline": language.js replaces this text with the chosen language -->
-            <p data-i18n="tagline">Fast. Reliable. Everywhere.</p>
+    <!-- ===== HEADER: logo, company name and language button ===== -->
+    <header class="site-header blue">
+        <div class="header-inner">
+            <!-- alt text is read by screen readers and shown if the image fails to load -->
+            <a href="index.html" class="logo"><img src="data/logo1.png" alt="Snabb Leverans logo"></a>
+            <div class="brand">
+                <h1>Snabb Leverans AB</h1>
+                <!-- data-i18n="tagline": language.js replaces this text with the chosen language -->
+                <p data-i18n="tagline">Fast. Reliable. Everywhere.</p>
+            </div>
+            <div class="header-actions">
+                <!-- type="button" stops the button from submitting a form by accident -->
+                <button class="lang-toggle" type="button">EN / SV</button>
+            </div>
         </div>
-        <div class="header-actions">
-            <!-- type="button" stops the button from submitting a form by accident -->
-            <button class="lang-toggle" type="button">EN / SV</button>
-        </div>
-    </div>
-</header>
+    </header>
 
-<main>
-    <section class="hero">
-        <!--
+    <main>
+        <section class="hero">
+            <!--
           The city skyline in the background, drawn with SVG rectangles.
           SVG = Scalable Vector Graphics: shapes described in code, sharp at any size.
           aria-hidden="true" tells screen readers to skip it, as it is only decoration.
           preserveAspectRatio="none" lets the drawing stretch to the full page width.
         -->
-        <svg class="skyline" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
-            <g fill="#b9cdeb" opacity="0.55">
-                <rect x="10" y="60" width="28" height="160"/><rect x="42" y="100" width="40" height="120"/>
-                <rect x="90" y="30" width="22" height="190"/><rect x="118" y="120" width="50" height="100"/>
-                <rect x="175" y="80" width="30" height="140"/><rect x="210" y="140" width="45" height="80"/>
-                <rect x="900" y="110" width="40" height="110"/><rect x="945" y="50" width="26" height="170"/>
-                <rect x="976" y="130" width="48" height="90"/><rect x="1030" y="70" width="32" height="150"/>
-                <rect x="1068" y="20" width="24" height="200"/><rect x="1098" y="100" width="46" height="120"/>
-                <rect x="1150" y="60" width="40" height="160"/>
-            </g>
-        </svg>
+            <svg class="skyline" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+                <g fill="#b9cdeb" opacity="0.55">
+                    <rect x="10" y="60" width="28" height="160" />
+                    <rect x="42" y="100" width="40" height="120" />
+                    <rect x="90" y="30" width="22" height="190" />
+                    <rect x="118" y="120" width="50" height="100" />
+                    <rect x="175" y="80" width="30" height="140" />
+                    <rect x="210" y="140" width="45" height="80" />
+                    <rect x="900" y="110" width="40" height="110" />
+                    <rect x="945" y="50" width="26" height="170" />
+                    <rect x="976" y="130" width="48" height="90" />
+                    <rect x="1030" y="70" width="32" height="150" />
+                    <rect x="1068" y="20" width="24" height="200" />
+                    <rect x="1098" y="100" width="46" height="120" />
+                    <rect x="1150" y="60" width="40" height="160" />
+                </g>
+            </svg>
 
-        <!-- The heading is split in two spans so "Package" can be orange (class "accent") -->
-        <h2><span data-i18n="trackTitle1">Track Your</span> <span class="accent" data-i18n="trackTitle2">Package</span></h2>
-        <p class="hero-text" data-i18n="heroText">Enter your Order ID below to display delivery status and track progress on our interactive map.</p>
+            <!-- The heading is split in two spans so "Package" can be orange (class "accent") -->
+            <h2><span data-i18n="trackTitle1">Track Your</span> <span class="accent"
+                    data-i18n="trackTitle2">Package</span></h2>
+            <p class="hero-text" data-i18n="heroText">Enter your Order ID below to display delivery status and track
+                progress on our interactive map.</p>
 
-        <!--
+            <!--
           The search form. Using a real <form> means pressing Enter also submits it.
           The JavaScript at the bottom catches the "submit" event.
         -->
-        <form class="search-form" id="trackForm">
-            <!-- Wrapping the icon and input in a <label> makes the whole area clickable -->
-            <label class="search-field">
-                <!-- Magnifying glass icon. stroke="currentColor" uses the text color from CSS -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M20 20l-4.5-4.5"/></svg>
-                <!-- required = the browser will not submit an empty field. autocomplete="off" hides old suggestions -->
-                <input type="text" id="orderInput" placeholder="Enter Order ID" data-i18n-placeholder="enterOrderId" autocomplete="off" required>
-            </label>
-            <button type="submit" class="btn-track">
-                <span data-i18n="track">Track</span>
-                <!-- Arrow icon -->
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
-            </button>
-        </form>
+            <form class="search-form" id="trackForm">
+                <!-- Wrapping the icon and input in a <label> makes the whole area clickable -->
+                <label class="search-field">
+                    <!-- Magnifying glass icon. stroke="currentColor" uses the text color from CSS -->
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round">
+                        <circle cx="10.5" cy="10.5" r="7" />
+                        <path d="M20 20l-4.5-4.5" />
+                    </svg>
+                    <!-- required = the browser will not submit an empty field. autocomplete="off" hides old suggestions -->
+                    <input type="text" id="orderInput" placeholder="Enter Order ID" data-i18n-placeholder="enterOrderId"
+                        autocomplete="off" required>
+                </label>
+                <button type="submit" class="btn-track">
+                    <span data-i18n="track">Track</span>
+                    <!-- Arrow icon -->
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 12h16M14 6l6 6-6 6" />
+                    </svg>
+                </button>
+            </form>
 
-        <!-- Empty at first; JavaScript writes error messages here -->
-        <p class="form-message" id="formMessage"></p>
-        <!-- JavaScript adds a button for each sample package id here -->
-        <div class="sample-ids" id="sampleIds"><span data-i18n="tryIds">Try a sample ID:</span></div>
+            <!-- Empty at first; JavaScript writes error messages here -->
+            <p class="form-message" id="formMessage"></p>
+            <!-- JavaScript adds a button for each sample package id here -->
+            <div class="sample-ids" id="sampleIds"><span data-i18n="tryIds">Try a sample ID:</span></div>
 
-        <!--
+            <!--
           The illustrated journey: 4 pins with the truck picture in the middle.
           It is only decoration and does not change with the package.
           CSS Flexbox (in style.css, .journey) puts them in one row.
@@ -103,44 +123,60 @@
           CSS uses var(--pin) to color the label when you hover the pin.
         -->
 
-<div class="journey">
-    <!-- The dotted orange line behind the pins -->
-    <div class="journey-line"></div>
+            <div class="journey">
+                <!-- The dotted orange line behind the pins -->
+                <div class="journey-line"></div>
 
-   <div class="journey-step journey-step--closest" tabindex="0" style="--pin:#1556c9">
-    <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#1556c9"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
-    <span data-i18n="closest">Closest to You</span>
-</div>
- 
-    <div class="journey-step" tabindex="0" style="--pin:#f26a1b">
-        <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#f26a1b"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
-        <span data-i18n="inTransit">In Transit</span>
-    </div>
- 
-    <div class="journey-logo">
-        <!-- alt="" (empty) because the image is decoration; the logo is already in the header -->
-        <img src="data/TruckandParcels.png" alt="">
-    </div>
- 
-    <div class="journey-step" tabindex="0" style="--pin:#f26a1b">
-        <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#f26a1b"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
-        <span data-i18n="outForDelivery">Out for Delivery</span>
-    </div>
- 
-    <div class="journey-step" tabindex="0" style="--pin:#1556c9">
-        <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#1556c9"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
-        <span data-i18n="delivered">Delivered</span>
-    </div>
-</div>
+                <div class="journey-step journey-step--closest" tabindex="0" style="--pin:#1556c9">
+                    <svg viewBox="0 0 24 32">
+                        <path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z"
+                            fill="#1556c9" />
+                        <circle cx="12" cy="12" r="4.5" fill="#fff" />
+                    </svg>
+                    <span data-i18n="closest">Closest to You</span>
+                </div>
 
-        <p class="slogan" data-i18n="slogan">Delivering to your Closest Pickup Point</p>
-    </section>
-</main>
+                <div class="journey-step" tabindex="0" style="--pin:#f26a1b">
+                    <svg viewBox="0 0 24 32">
+                        <path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z"
+                            fill="#f26a1b" />
+                        <circle cx="12" cy="12" r="4.5" fill="#fff" />
+                    </svg>
+                    <span data-i18n="inTransit">In Transit</span>
+                </div>
 
-<footer class="site-footer">
-    <div class="footer-inner">
-        <span data-i18n="rights">© 2026 Snabb Leverans AB. All rights reserved.</span>
-        <!--
+                <div class="journey-logo">
+                    <!-- alt="" (empty) because the image is decoration; the logo is already in the header -->
+                    <img src="data/TruckandParcels.png" alt="">
+                </div>
+
+                <div class="journey-step" tabindex="0" style="--pin:#f26a1b">
+                    <svg viewBox="0 0 24 32">
+                        <path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z"
+                            fill="#f26a1b" />
+                        <circle cx="12" cy="12" r="4.5" fill="#fff" />
+                    </svg>
+                    <span data-i18n="outForDelivery">Out for Delivery</span>
+                </div>
+
+                <div class="journey-step" tabindex="0" style="--pin:#1556c9">
+                    <svg viewBox="0 0 24 32">
+                        <path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z"
+                            fill="#1556c9" />
+                        <circle cx="12" cy="12" r="4.5" fill="#fff" />
+                    </svg>
+                    <span data-i18n="delivered">Delivered</span>
+                </div>
+            </div>
+
+            <p class="slogan" data-i18n="slogan">Delivering to your Closest Pickup Point</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span data-i18n="rights">© 2026 Snabb Leverans AB. All rights reserved.</span>
+            <!--
           Help is a normal link to another page.
           Terms, Contact and Privacy do not go to a page; they open a pop-up.
           That is why they are <button> elements instead of <a> links: a button
@@ -148,17 +184,17 @@
           (It also stops the browser from showing a link address on hover.)
           The ids are used by modals.js to find them. CSS makes them look like links.
         -->
-        <nav class="footer-links">
-            <a href="help.html">Help</a>
-            <button type="button" class="footer-link-btn" id="termsLink" data-i18n="terms">Terms of Use</button>
-            <button type="button" class="footer-link-btn" id="contactLink" data-i18n="contact">Contact Us</button>
-            <button type="button" class="footer-link-btn" id="privacyLink" data-i18n="privacy">Privacy</button>
-        </nav>
-        <span data-i18n="moving">Delivering a better tomorrow.</span>
-    </div>
-</footer>
+            <nav class="footer-links">
+                <a href="help.html">Help</a>
+                <button type="button" class="footer-link-btn" id="termsLink" data-i18n="terms">Terms of Use</button>
+                <button type="button" class="footer-link-btn" id="contactLink" data-i18n="contact">Contact Us</button>
+                <button type="button" class="footer-link-btn" id="privacyLink" data-i18n="privacy">Privacy</button>
+            </nav>
+            <span data-i18n="moving">Delivering a better tomorrow.</span>
+        </div>
+    </footer>
 
-<!--
+    <!--
   ===== POP-UP MODAL WINDOWS =====
   Each modal has two layers:
     1. The outer <div> with the id: covers the whole screen (position: fixed,
@@ -171,118 +207,136 @@
   The × button has aria-label="Close" so screen readers say "Close" instead of "times".
 -->
 
-<div id="termsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
-    <div style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); color: #333;">
-        <button type="button" class="modal-close" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-weight: bold; color: #555;" aria-label="Close">×</button>
-        <h3 data-i18n="termsTitle">Terms of Use</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.</p>
+    <div id="termsModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div
+            style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); color: #333;">
+            <button type="button" class="modal-close"
+                style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-weight: bold; color: #555;"
+                aria-label="Close">×</button>
+            <h3 data-i18n="termsTitle">Terms of Use</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus
+                ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
+                mauris. Fusce nec tellus sed augue semper porta.</p>
+        </div>
     </div>
-</div>
 
-<div id="privacyModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
-    <div style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); color: #333;">
-        <button type="button" class="modal-close" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-weight: bold; color: #555;" aria-label="Close">×</button>
-        <h3 data-i18n="privacyTitle">Privacy Policy</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem.</p>
+    <div id="privacyModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div
+            style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); color: #333;">
+            <button type="button" class="modal-close"
+                style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-weight: bold; color: #555;"
+                aria-label="Close">×</button>
+            <h3 data-i18n="privacyTitle">Privacy Policy</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales ligula in libero. Sed
+                dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor.
+                Maecenas mattis. Sed convallis tristique sem.</p>
+        </div>
     </div>
-</div>
 
-<div id="contactModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
-    <div style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); color: #333;">
-        <button type="button" class="modal-close" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-weight: bold; color: #555;" aria-label="Close">×</button>
-        <h3 style="margin-top: 0;" data-i18n="contactDetailsTitle">Contact Details</h3>
-        <p><strong>Snabb Leverans AB</strong></p>
-        <p>Drottninggatan 44<br>111 21 Stockholm, Sweden</p>
-        <p>
-            <strong>Phone:</strong> +46 8 123 456 78<br>
-            <!-- A "mailto:" link opens the user's email program with this address filled in -->
-            <strong>Email:</strong> <a href="mailto:support@snabbleverans.se" style="color: #f26a1b; text-decoration: underline;">support@snabbleverans.se</a>
-        </p>
+    <div id="contactModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+        <div
+            style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); color: #333;">
+            <button type="button" class="modal-close"
+                style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-weight: bold; color: #555;"
+                aria-label="Close">×</button>
+            <h3 style="margin-top: 0;" data-i18n="contactDetailsTitle">Contact Details</h3>
+            <p><strong>Snabb Leverans AB</strong></p>
+            <p>Drottninggatan 44<br>111 21 Stockholm, Sweden</p>
+            <p>
+                <strong>Phone:</strong> +46 8 123 456 78<br>
+                <!-- A "mailto:" link opens the user's email program with this address filled in -->
+                <strong>Email:</strong> <a href="mailto:support@snabbleverans.se"
+                    style="color: #f26a1b; text-decoration: underline;">support@snabbleverans.se</a>
+            </p>
+        </div>
     </div>
-</div>
 
-<!--
+    <!--
   Scripts are placed at the end of <body> so the HTML above already exists
   when they run. The ORDER matters: the code at the bottom uses functions
   from these files (t, loadPackages, findPackage), so they must load first.
   login.js is empty for now (only a plan in a comment).
   modals.js handles the footer pop-ups.
 -->
-<script src="scripts/language.js"></script>
-<script src="scripts/login.js"></script>
-<script src="scripts/packagehandling.js"></script>
-<script src="scripts/modals.js"></script>
-<script>
-    // Grab the elements we need once, and keep them in variables.
-    const form = document.getElementById("trackForm");
-    const input = document.getElementById("orderInput");
-    const message = document.getElementById("formMessage");
+    <script src="scripts/language.js"></script>
+    <script src="scripts/login.js"></script>
+    <script src="scripts/packagehandling.js"></script>
+    <script src="scripts/modals.js"></script>
+    <script>
+        // Grab the elements we need once, and keep them in variables.
+        const form = document.getElementById("trackForm");
+        const input = document.getElementById("orderInput");
+        const message = document.getElementById("formMessage");
 
-    /*
-      Show a few package ids from the JSON file as clickable examples.
-      loadPackages() returns a Promise, so we use .then() to run code when the
-      data has arrived, and .catch() to run code if loading failed.
-    */
-    loadPackages()
-        .then(list => {
-            const container = document.getElementById("sampleIds");
-            // slice(0, 4) = take the first 4 packages
-            list.slice(0, 4).forEach(pkg => {
-                // Create a new <button> element with JavaScript and add it to the page
-                const button = document.createElement("button");
-                button.type = "button";
-                button.textContent = pkg.packageId;
-                button.addEventListener("click", () => {
-                    input.value = pkg.packageId;
-                    // requestSubmit() submits the form just like clicking "Track"
-                    form.requestSubmit();
+        /*1
+          Show a few package ids from the JSON file as clickable examples.
+          loadPackages() returns a Promise, so we use .then() to run code when the
+          data has arrived, and .catch() to run code if loading failed.
+        */
+        loadPackages()
+            .then(list => {
+                const container = document.getElementById("sampleIds");
+                // slice(0, 4) = take the first 4 packages
+                list.slice(0, 4).forEach(pkg => {
+                    // Create a new <button> element with JavaScript and add it to the page
+                    const button = document.createElement("button");
+                    button.type = "button";
+                    button.textContent = pkg.packageId;
+                    button.addEventListener("click", () => {
+                        input.value = pkg.packageId;
+                        // requestSubmit() submits the form just like clicking "Track"
+                        form.requestSubmit();
+                    });
+                    container.appendChild(button);
                 });
-                container.appendChild(button);
+            })
+            .catch(() => {
+                // We remember the translation KEY in data-key so the message can be
+                // translated again if the user switches language (see the bottom).
+                message.dataset.key = "loadError";
+                message.textContent = t("loadError");
             });
-        })
-        .catch(() => {
-            // We remember the translation KEY in data-key so the message can be
-            // translated again if the user switches language (see the bottom).
-            message.dataset.key = "loadError";
-            message.textContent = t("loadError");
+
+        // Runs when the user presses "Track" or hits Enter in the input.
+        form.addEventListener("submit", async event => {
+            // By default a form reloads the page when submitted. We stop that,
+            // because we want to decide ourselves what happens.
+            event.preventDefault();
+
+            // try/catch: if anything inside "try" throws an error, the code in
+            // "catch" runs instead of the whole script crashing.
+            try {
+                await loadPackages();
+            } catch (e) {
+                message.dataset.key = "loadError";
+                message.textContent = t("loadError");
+                return; // stop here, there is no data to search in
+            }
+
+            const pkg = findPackage(input.value);
+            if (pkg) {
+                // Go to the status page and pass the id in the URL ("query string").
+                // encodeURIComponent makes the text safe to put in a URL.
+                window.location.href = "status.html?id=" + encodeURIComponent(pkg.packageId);
+            } else {
+                message.dataset.key = "notFound";
+                message.textContent = t("notFound");
+            }
         });
 
-    // Runs when the user presses "Track" or hits Enter in the input.
-    form.addEventListener("submit", async event => {
-        // By default a form reloads the page when submitted. We stop that,
-        // because we want to decide ourselves what happens.
-        event.preventDefault();
+        // language.js sends this event when the language changes.
+        // Re-translate the error message, if one is shown.
+        document.addEventListener("languagechange", () => {
+            if (message.dataset.key) {
+                message.textContent = t(message.dataset.key);
+            }
+        });
 
-        // try/catch: if anything inside "try" throws an error, the code in
-        // "catch" runs instead of the whole script crashing.
-        try {
-            await loadPackages();
-        } catch (e) {
-            message.dataset.key = "loadError";
-            message.textContent = t("loadError");
-            return; // stop here, there is no data to search in
-        }
-
-        const pkg = findPackage(input.value);
-        if (pkg) {
-            // Go to the status page and pass the id in the URL ("query string").
-            // encodeURIComponent makes the text safe to put in a URL.
-            window.location.href = "status.html?id=" + encodeURIComponent(pkg.packageId);
-        } else {
-            message.dataset.key = "notFound";
-            message.textContent = t("notFound");
-        }
-    });
-
-    // language.js sends this event when the language changes.
-    // Re-translate the error message, if one is shown.
-    document.addEventListener("languagechange", () => {
-        if (message.dataset.key) {
-            message.textContent = t(message.dataset.key);
-        }
-    });
-
-</script>
+    </script>
 
 </body>
+
 </html>
