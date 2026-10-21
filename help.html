@@ -1,16 +1,25 @@
 <!DOCTYPE html>
+<!--
+  help.html - the Help / FAQ page.
+  A plain page with questions and answers. There is no package data here,
+  so the only script it needs is language.js (for the EN / SV button).
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The description is shown by search engines under the page title -->
     <meta name="description" content="Help and frequently asked questions about tracking packages with Snabb Leverans.">
     <title>Snabb Leverans AB – Help</title>
     <link rel="icon" href="data/logo1.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- The same stylesheet as the other pages; the help styles are in the "HELP PAGE" section -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<!-- ===== HEADER: the same blue header as status.html ===== -->
 <header class="site-header blue">
     <div class="header-inner">
         <a href="index.html" class="logo"><img src="data/logo1.png" alt="Snabb Leverans logo"></a>
@@ -21,6 +30,7 @@
         <div class="header-actions">
             <button class="lang-toggle" type="button">EN / SV</button>
             <a href="index.html" class="home-link">
+                <!-- Arrow pointing left. aria-hidden="true": screen readers skip the icon and read the text instead -->
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
                 <span data-i18n="helpHome">Back to tracking</span>
             </a>
@@ -29,12 +39,18 @@
 </header>
 
 <main class="help-page">
+    <!-- "card" gives the white box with rounded corners (shared with status.html) -->
     <section class="card help-card">
         <div class="card-title">
             <h2 data-i18n="helpTitle">How can we help?</h2>
             <p data-i18n="helpIntro">Find quick answers about tracking a package with Snabb Leverans.</p>
         </div>
 
+        <!--
+          One <section> per question. Each text has a data-i18n key, so
+          language.js can swap it to Swedish. The keys all start with "help"
+          to make them easy to find in language.js.
+        -->
         <div class="help-list">
             <section class="help-item">
                 <h3 data-i18n="helpTrackTitle">Track a package</h3>
@@ -50,6 +66,12 @@
             </section>
             <section class="help-item">
                 <h3 data-i18n="helpStatusesTitle">What do the tracking statuses mean?</h3>
+                <!--
+                  <dl> = "description list": pairs of a term (<dt>) and its
+                  description (<dd>). A good fit for "word: explanation" lists.
+                  Each pair is wrapped in a <div> so CSS can space them out.
+                  The four statuses are the same as the steps on status.html.
+                -->
                 <dl class="help-statuses">
                     <div><dt data-i18n="helpWarehouseTitle">In Warehouse</dt><dd data-i18n="helpWarehouseText">The package is being prepared or stored at a warehouse.</dd></div>
                     <div><dt data-i18n="helpPickedUpTitle">Picked Up</dt><dd data-i18n="helpPickedUpText">The carrier has collected the package from the sender.</dd></div>
@@ -63,6 +85,7 @@
             </section>
         </div>
 
+        <!-- A light-blue note box at the bottom of the card -->
         <p class="help-demo-note" data-i18n="helpDemoNote">This project is a demonstration. Its package records are sample data, not live shipment updates.</p>
     </section>
 </main>
@@ -70,6 +93,11 @@
 <footer class="site-footer">
     <div class="footer-inner">
         <span data-i18n="rights">© 2026 Snabb Leverans AB. All rights reserved.</span>
+        <!--
+          href="#" is a placeholder: the link goes nowhere yet.
+          On index.html these three open pop-ups (see modals.js), but this
+          page does not have the pop-ups or load modals.js.
+        -->
         <nav class="footer-links">
             <a href="help.html" data-i18n="help">Help</a>
             <a href="#" data-i18n="terms">Terms of Use</a>
@@ -79,6 +107,8 @@
         <span data-i18n="moving">Delivering a better tomorrow.</span>
     </div>
 </footer>
+
+<!-- Only the translations are needed on this page. Placed last so the HTML above already exists. -->
 <script src="scripts/language.js"></script>
 </body>
 </html>
