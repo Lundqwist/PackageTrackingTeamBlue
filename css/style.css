@@ -838,7 +838,7 @@ a {
 
 /* justify-content: space-between spreads the 3 parts out: left, middle, right */
 .footer-inner {
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 0 auto;
     padding: 36px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
