@@ -11,8 +11,11 @@ The design is based on the mockups in the [data/](data/) folder.
 |------|--------------|
 | [index.html](index.html) | Start page. Enter an Order ID and press **Track**. |
 | [status.html](status.html) | Order status: map, estimated delivery time, current location, recipient/sender and a 4-step progress tracker. Opened as `status.html?id=SL-100234`. |
+| [help.html](help.html) | Help / FAQ: how to track a package, where to find the Order ID, what to do if it is not found, what each tracking status means and whether the delivery time is guaranteed. Has a **Back to tracking** link to the start page. |
 
-Both pages have an **EN / SV** button to switch between English and Swedish.
+All pages have an **EN / SV** button to switch between English and Swedish, and a footer with links to **Help**, **Terms of Use**, **Contact Us** and **Privacy**.
+
+On the start page, *Terms of Use*, *Contact Us* and *Privacy* open pop-up windows (modals). Terms and Privacy hold placeholder text (lorem ipsum); Contact Us shows the company's (made-up) address, phone and email. Close a pop-up with the **×** button or by clicking the dark area around it. On the status and help pages these three links do not do anything yet.
 
 ## How to run it
 
@@ -28,18 +31,23 @@ Try one of these Order IDs: `SL-100234`, `SL-100587`, `SL-101342`, `SL-102118`, 
 
 ```
 PackageTrackingTeamBlue/
-├── index.html              Start page
+├── index.html              Start page (+ the Terms / Privacy / Contact pop-ups)
 ├── status.html             Order status page
+├── help.html               Help / FAQ page
 ├── css/
-│   └── style.css           All styles for both pages
+│   └── style.css           All styles for all pages
 ├── scripts/
 │   ├── packagehandling.js  Loads and searches the package data
 │   ├── maptracking.js      Draws the map and the package route (Leaflet)
-│   ├── language.js         English / Swedish translations
+│   ├── language.js         English / Swedish translations (all pages)
+│   ├── modals.js           Opens and closes the footer pop-ups
 │   └── login.js            Login (planned, not written yet)
 └── data/
-    ├── packages.json       Sample package data
-    └── *.png / *.jpg       Logo and design mockups
+    ├── packages.json             Sample package data
+    ├── logo1.png                 Logo in the header and browser tab
+    ├── TruckandParcels.png       Truck picture in the middle of the start page journey
+    ├── package tracking logo 2.png.png  Alternative logo (not used yet)
+    └── snabb *.jpg / *.png       Design mockups
 ```
 
 ## How it works
@@ -50,6 +58,10 @@ PackageTrackingTeamBlue/
    - colors the progress tracker (`done` / `current` CSS classes),
    - calls `showPackageOnMap()` to draw the route.
 3. **The map** shows the sender (blue dot), the current location (orange pin) and the recipient (grey dot). A solid line shows the distance already travelled and a dashed line shows what is left.
+4. **help.html** – A static page. Only `language.js` is loaded, so all its text is translated through `data-i18n` keys.
+5. **The pop-ups** – The three modal windows are written at the bottom of `index.html` and start hidden (`display: none`). `modals.js` listens for clicks on the footer buttons (`termsLink`, `contactLink`, `privacyLink`) and sets the matching modal to `display: flex` to show it, and back to `none` to close it.
+
+**Translations:** every text that should switch language has a `data-i18n="key"` attribute. To add a text, add the key to *both* the `en` and `sv` objects in [scripts/language.js](scripts/language.js). The chosen language is remembered in `localStorage`, so it stays when you move between pages.
 
 Every file has comments explaining what the code does and why. They are written as a learning resource, so read through the code.
 
@@ -93,5 +105,7 @@ To add a package, copy one of the objects in the file, give it a new `packageId`
 
 - Write the login in `scripts/login.js` (see the plan in the file's comment) and only show the map to logged-in users.
 - Add more statuses, e.g. *Out for Delivery* and *Delivered*.
-- Make the footer links (Help, Terms, Contact, Privacy) go to real pages.
+- Write real text for Terms of Use and Privacy, and make the pop-ups work on the status and help pages too.
+- Move the pop-ups' inline `style="..."` into `css/style.css`.
+- Translate the Help link on the start page (it is missing `data-i18n="help"`).
 - Show a history list of the places the package has passed through.
