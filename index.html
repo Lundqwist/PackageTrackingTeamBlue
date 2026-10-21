@@ -3,6 +3,8 @@
   index.html - the start page ("Track Your Package").
   The user types an Order ID here. If the package exists in data/packages.json
   the browser goes to status.html?id=THE-ID, which shows the map and status.
+  The footer also has three pop-up windows (Terms, Contact, Privacy),
+  written at the bottom of this file and opened by scripts/modals.js.
 -->
 <html lang="en">
 <head>
@@ -12,14 +14,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snabb Leverans AB – Track Your Package</title>
 
-    <!-- The small icon in the browser tab. Spaces in file names must be written as %20 in URLs -->
+    <!-- The small icon in the browser tab (a "favicon") -->
     <link rel="icon" href="data/logo1.png">
 
     <!-- Fonts from Google Fonts: Plus Jakarta Sans for text, Caveat for the handwritten slogan -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Our own styles, shared by both pages -->
+    <!-- Our own styles, shared by all pages -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -90,15 +92,21 @@
         <div class="sample-ids" id="sampleIds"><span data-i18n="tryIds">Try a sample ID:</span></div>
 
         <!--
-          The illustrated journey: 4 pins with the logo in the middle.
-          CSS Grid (in style.css, .journey) places them in 5 columns.
+          The illustrated journey: 4 pins with the truck picture in the middle.
+          It is only decoration and does not change with the package.
+          CSS Flexbox (in style.css, .journey) puts them in one row.
           The same pin shape (an SVG path) is reused with different fill colors.
+
+          tabindex="0" lets keyboard users reach each pin with the Tab key,
+          so the hover effect also shows on keyboard focus.
+          style="--pin:#1556c9" sets a CSS variable on this one element; the
+          CSS uses var(--pin) to color the label when you hover the pin.
         -->
-         
+
 <div class="journey">
     <!-- The dotted orange line behind the pins -->
     <div class="journey-line"></div>
- 
+
    <div class="journey-step journey-step--closest" tabindex="0" style="--pin:#1556c9">
     <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#1556c9"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
     <span data-i18n="closest">Closest to You</span>
@@ -132,7 +140,14 @@
 <footer class="site-footer">
     <div class="footer-inner">
         <span data-i18n="rights">© 2026 Snabb Leverans AB. All rights reserved.</span>
-        <!-- Footer links changed to buttons to eliminate hover URL preview -->
+        <!--
+          Help is a normal link to another page.
+          Terms, Contact and Privacy do not go to a page; they open a pop-up.
+          That is why they are <button> elements instead of <a> links: a button
+          is meant for "do something here", a link for "go somewhere else".
+          (It also stops the browser from showing a link address on hover.)
+          The ids are used by modals.js to find them. CSS makes them look like links.
+        -->
         <nav class="footer-links">
             <a href="help.html">Help</a>
             <button type="button" class="footer-link-btn" id="termsLink" data-i18n="terms">Terms of Use</button>
@@ -143,7 +158,19 @@
     </div>
 </footer>
 
-<!-- ===== POP-UP MODAL WINDOWS ===== -->
+<!--
+  ===== POP-UP MODAL WINDOWS =====
+  Each modal has two layers:
+    1. The outer <div> with the id: covers the whole screen (position: fixed,
+       100% width and height) with a see-through dark color (rgba ... 0.5).
+       It starts hidden with display: none. modals.js sets it to display: flex
+       to show it, and justify-content/align-items: center put the box in the middle.
+    2. The inner <div>: the white box with the text.
+  z-index: 1000 makes the modal draw on top of everything else on the page.
+  The styles are written inline (style="...") here; they could be moved to style.css.
+  The × button has aria-label="Close" so screen readers say "Close" instead of "times".
+-->
+
 <div id="termsModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
     <div style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); color: #333;">
         <button type="button" class="modal-close" style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-weight: bold; color: #555;" aria-label="Close">×</button>
@@ -168,6 +195,7 @@
         <p>Drottninggatan 44<br>111 21 Stockholm, Sweden</p>
         <p>
             <strong>Phone:</strong> +46 8 123 456 78<br>
+            <!-- A "mailto:" link opens the user's email program with this address filled in -->
             <strong>Email:</strong> <a href="mailto:support@snabbleverans.se" style="color: #f26a1b; text-decoration: underline;">support@snabbleverans.se</a>
         </p>
     </div>
@@ -177,6 +205,8 @@
   Scripts are placed at the end of <body> so the HTML above already exists
   when they run. The ORDER matters: the code at the bottom uses functions
   from these files (t, loadPackages, findPackage), so they must load first.
+  login.js is empty for now (only a plan in a comment).
+  modals.js handles the footer pop-ups.
 -->
 <script src="scripts/language.js"></script>
 <script src="scripts/login.js"></script>

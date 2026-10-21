@@ -1,9 +1,14 @@
 /*
-if the user is logged in, show the map and tracking information.
-Get coordinates from the packagedata.
-Use coordinates in the map to track the package.
+  maptracking.js - draws the map on status.html.
 
+  The plan for this file:
+    - Get the coordinates from the package data.       (done)
+    - Use them to show the package's route on a map.   (done)
+    - Only show the map if the user is logged in.      (not yet, see login.js)
 
+  Functions in this file:
+    initMap(elementId)    - creates an empty map inside an HTML element
+    showPackageOnMap(pkg) - draws one package's route on that map
 */
 
 /*

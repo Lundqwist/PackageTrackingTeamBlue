@@ -1,7 +1,8 @@
 /*
-Handles switching between English and Swedish.
-Elements with data-i18n get their text replaced,
-elements with data-i18n-placeholder get their placeholder replaced.
+  language.js - switches the text on the page between English and Swedish.
+  It is loaded on every page (index.html, status.html and help.html).
+  Elements with data-i18n get their text replaced,
+  elements with data-i18n-placeholder get their placeholder replaced.
 */
 
 /*
@@ -18,6 +19,10 @@ elements with data-i18n-placeholder get their placeholder replaced.
 
   To add a new text: give the element a data-i18n="myKey" attribute and add
   "myKey" to BOTH the en and sv objects below.
+
+  The keys are roughly grouped by page: start page first, then the help page
+  (keys starting with "help"), the footer and pop-ups, and the status page.
+  Each line is   key: "text",   and the comma between lines is required.
 */
 const translations = {
     en: {
@@ -141,7 +146,7 @@ const translations = {
 /*
   The language the user picked is remembered in localStorage, a small
   key/value storage in the browser that survives page reloads and moving
-  between index.html and status.html.
+  between the pages.
 
   It is wrapped in try/catch because some browsers (e.g. private mode or
   strict privacy settings) throw an error when you use localStorage.

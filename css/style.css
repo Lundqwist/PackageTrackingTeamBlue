@@ -1,14 +1,20 @@
 /*
-  style.css - shared by index.html and status.html
+  style.css - shared by index.html, status.html and help.html
 
   The file is split into sections:
     1. Variables (colors and font)
     2. Basic page setup
     3. Header
-    4. Hero (start page)
+    4. Hero (start page), including the journey with pins
     5. Status page
-    6. Footer
-    7. Mobile (screens 800px wide or less)
+    6. Help page
+    7. Footer
+    8. Mobile (screens 800px wide or less)
+
+  HOW CSS DECIDES WHICH RULE WINS
+  When two rules set the same property on the same element, the more
+  specific selector wins (an id beats a class, a class beats a tag name).
+  If they are equally specific, the rule that comes LATER in the file wins.
 */
 
 /* ================= 1. VARIABLES =================
@@ -359,8 +365,15 @@ a {
     z-index: -1;
 }
 
-/* ===== COPY THE CSS FROM HERE ===== */
-  
+/* ===== NEWER JOURNEY STYLES (pasted in from a separate design) =====
+   These rules style the SAME classes as the rules just above (.journey,
+   .journey-step, .journey-logo, .journey-line). Because they come later in
+   the file they win wherever both set the same property. For example
+   .journey becomes a flex row here instead of a grid, so the grid columns
+   above no longer matter. Properties only set in the older rules (like the
+   "float" animation on the logo, or lifting pins 2 and 4) still apply.
+   Tidying up later: merge the two blocks into one. */
+
   .journey {
     position: relative;
     display: flex;
@@ -392,7 +405,7 @@ a {
     padding: 0 10px;
     text-align: center;
     cursor: pointer;
-    outline: none;
+    outline: none;             /* hides the default focus ring; :focus-visible below shows our own effect instead */
     --pin: #1556c9;            /* label color on hover, set per step in the HTML */
   }
  
@@ -402,6 +415,8 @@ a {
     display: block;
     transform-origin: 50% 100%;   /* the pin grows from its tip */
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+    /* transition = animate changes to these properties over 0.25 seconds,
+       instead of jumping. cubic-bezier sets the speed curve (fast, then slow). */
     transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
                 filter 0.25s ease;
   }
@@ -427,7 +442,9 @@ a {
     height: auto;
   }
  
-  /* Hover movement (mouse only) and keyboard focus */
+  /* Hover movement: the pin jumps up and grows a little.
+     @media (hover: hover) = only on devices with a mouse. On touch screens
+     a "hover" can get stuck after tapping, so we skip it there. */
   @media (hover: hover) {
     .journey-step:hover svg {
       transform: translateY(-8px) scale(1.15);
@@ -438,6 +455,8 @@ a {
     }
   }
  
+  /* The same effect for keyboard users. :focus-visible applies when the
+     element got focus with the Tab key (thanks to tabindex="0" in the HTML). */
   .journey-step:focus-visible svg {
     transform: translateY(-8px) scale(1.15);
     filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.25));
@@ -464,14 +483,15 @@ a {
     }
   }
  
-  /* Respect people who turn animations off */
+  /* Respect people who turn animations off in their computer's settings
+     (some people get dizzy or distracted by movement) */
   @media (prefers-reduced-motion: reduce) {
     .journey-step svg,
     .journey-step span {
       transition: none;
     }
   }
-  /* ===== COPY THE CSS UNTIL HERE ===== */
+  /* ===== END OF NEWER JOURNEY STYLES ===== */
 
 
 /* @keyframes describes an animation: where the element is at each point in time */
@@ -745,10 +765,13 @@ a {
     color: var(--navy);
 }
 
-/* ================= 6. FOOTER ================= */
+/* ================= 6. HELP PAGE =================
+   The help page reuses .card and .card-title from the status page above,
+   so it only needs a few extra rules. */
 
-/* ================= HELP PAGE ================= */
-
+/* min() picks the smaller value: the full width minus 16px on each side,
+   or 900px. So the page is never wider than 900px and never touches the
+   screen edges on a phone. */
 .help-page {
     width: min(100% - 32px, 900px);
     margin: 48px auto 64px;
@@ -764,6 +787,7 @@ a {
     margin-top: 32px;
 }
 
+/* Each question gets a thin line above it to separate it from the previous one */
 .help-item {
     padding: 24px 0;
     border-top: 1px solid var(--border);
@@ -788,6 +812,7 @@ a {
     margin: 18px 0 0;
 }
 
+/* dt = the status name, dd = its explanation (see the <dl> in help.html) */
 .help-statuses dt {
     margin-bottom: 4px;
     color: var(--text);
@@ -802,6 +827,8 @@ a {
     color: var(--navy);
     line-height: 1.6;
 }
+
+/* ================= 7. FOOTER ================= */
 
 .site-footer {
     background: var(--navy);
@@ -828,27 +855,30 @@ a {
     flex-wrap: wrap;
 }
 
-/* Styles both the regular links AND the new footer buttons together */
+/* Styles both the regular links (<a>) AND the footer buttons (<button>, on
+   index.html) the same way, so the buttons look exactly like links.
+   A comma between selectors means "apply to all of these". */
 .footer-links a,
 .footer-link-btn {
-    background: none;       /* Strips button background */
-    border: none;           /* Strips button border */
-    padding: 0 28px;             /* Removes padding */
-    border-left: 1px solid rgba(255, 255, 255, 0.5);
-    margin: 0;              /* Removes margin */
-    font: inherit;          /* Matches site font */
-    color: inherit;         /* Matches footer text color */
-    cursor: pointer;        /* Shows hand cursor on hover */
-    text-decoration: underline; /* Keeps the link look */
+    background: none;       /* removes the grey button background */
+    border: none;           /* removes the button border... */
+    padding: 0 28px;        /* space on both sides of each link */
+    border-left: 1px solid rgba(255, 255, 255, 0.5); /* ...then adds back only a thin divider line on the left */
+    margin: 0;              /* removes the button's default margin */
+    font: inherit;          /* buttons don't use the page font by default */
+    color: inherit;         /* use the footer's text color */
+    cursor: pointer;        /* show the hand cursor, like on a link */
+    text-decoration: underline; /* underline, so it looks like a link */
 }
 
-/* The thin divider lines between links are left borders... 
+/* (Old version, kept for reference. The rules above replace it.)
 .footer-links a, .footer-link-btn {
     padding: 0 28px;
     border-left: 1px solid rgba(255, 255, 255, 0.5);
 }*/
 
-/* ...except on the first link */
+/* No divider line before the first link.
+   :first-child = the element is the first child inside its parent. */
 .footer-links a:first-child , .footer-link-btn:first-child {
     border-left: none;
 }
@@ -858,7 +888,7 @@ a {
     text-decoration: underline;
 }
 
-/* ================= 7. MOBILE =================
+/* ================= 8. MOBILE =================
    A media query: the rules inside only apply when the screen is 800px wide
    or less. They override the desktop rules above, because they come later
    in the file. This is what makes the site "responsive". */
@@ -899,7 +929,11 @@ a {
     }
 
     /* Logo on its own row on top (grid-column 1 / -1 = span all columns),
-       then the 4 pins in one row below */
+       then the 4 pins in one row below.
+       NOTE: these grid rules were written for the older grid version of
+       .journey. The newer journey styles make .journey a flex row, so
+       grid-template-columns, grid-column and grid-row have no effect now.
+       The phone layout of the journey comes from the 700px rules above. */
     .journey {
         grid-template-columns: repeat(4, 1fr);
         row-gap: 16px;

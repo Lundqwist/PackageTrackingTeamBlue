@@ -124,6 +124,11 @@
 <footer class="site-footer">
     <div class="footer-inner">
         <span data-i18n="rights">© 2026 Snabb Leverans AB. All rights reserved.</span>
+        <!--
+          href="#" is a placeholder: these links go nowhere yet.
+          On index.html Contact, Terms and Privacy open pop-ups (see modals.js),
+          but this page does not have the pop-ups.
+        -->
         <nav class="footer-links">
             <a href="help.html" data-i18n="help">Help</a>
             <a href="#" data-i18n="contact">Contact Us</a>
@@ -137,7 +142,7 @@
 <!--
   Load order matters:
   1. Leaflet first, because maptracking.js uses its "L" object.
-  2. Our own scripts.
+  2. Our own scripts (login.js is empty for now, only a plan in a comment).
   3. The page code at the bottom, which uses functions from all of them.
 -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

@@ -1,22 +1,21 @@
 
 /*
-This script handles package data for the application. It includes functions to load, process, and display package information.
+  packagehandling.js - loads the package data and helps the pages use it.
 
-PackageId
-Recipient
-Adress
+  The data comes from data/packages.json. Each package has these parts
+  (the README explains every field in detail):
+    packageId        - the Order ID the user types in, e.g. "SL-100234"
+    recipient        - name, address, latitude and longitude of the receiver
+    from             - company, address, latitude and longitude of the sender
+    currentLocation  - name, latitude and longitude of where the package is now
+    currentStatus    - one of the values in STATUSES below
+    estimatedDelivery - date and time, e.g. "2026-10-21T14:00"
 
-From
-Company
-Adress
-
-CurrentLocation
-Longtitude
-Latitude
-
-CurrentStatus
-
-
+  Functions in this file:
+    loadPackages()      - downloads the JSON file (only once)
+    findPackage(id)     - finds one package by its Order ID
+    getStatusIndex(pkg) - which tracker step (0-3) the package is on
+    formatDateTime(txt) - makes the date easier to read
 */
 
 /*
