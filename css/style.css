@@ -651,23 +651,38 @@ a {
     gap: 20px;
 }
 
+
 .footer-links {
     display: flex;
     flex-wrap: wrap;
 }
 
-/* The thin divider lines between links are left borders... */
-.footer-links a {
-    padding: 0 28px;
+/* Styles both the regular links AND the new footer buttons together */
+.footer-links a,
+.footer-link-btn {
+    background: none;       /* Strips button background */
+    border: none;           /* Strips button border */
+    padding: 0 28px;             /* Removes padding */
     border-left: 1px solid rgba(255, 255, 255, 0.5);
+    margin: 0;              /* Removes margin */
+    font: inherit;          /* Matches site font */
+    color: inherit;         /* Matches footer text color */
+    cursor: pointer;        /* Shows hand cursor on hover */
+    text-decoration: underline; /* Keeps the link look */
 }
 
+/* The thin divider lines between links are left borders... 
+.footer-links a, .footer-link-btn {
+    padding: 0 28px;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+}*/
+
 /* ...except on the first link */
-.footer-links a:first-child {
+.footer-links a:first-child , .footer-link-btn:first-child {
     border-left: none;
 }
 
-.footer-links a:hover {
+.footer-links a:hover, .footer-link-btn:hover {
     color: #fff;
     text-decoration: underline;
 }
@@ -788,7 +803,7 @@ a {
         text-align: center;
     }
 
-    .footer-links a {
+    .footer-links a, .footer-link-btn {
         padding: 0 12px;
     }
 }
