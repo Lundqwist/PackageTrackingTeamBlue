@@ -747,6 +747,62 @@ a {
 
 /* ================= 6. FOOTER ================= */
 
+/* ================= HELP PAGE ================= */
+
+.help-page {
+    width: min(100% - 32px, 900px);
+    margin: 48px auto 64px;
+}
+
+.help-card {
+    padding: 40px;
+}
+
+.help-list {
+    display: grid;
+    gap: 0;
+    margin-top: 32px;
+}
+
+.help-item {
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+}
+
+.help-item h3 {
+    margin: 0 0 10px;
+    color: var(--navy);
+    font-size: 1.1rem;
+}
+
+.help-item p,
+.help-statuses dd {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.help-statuses {
+    display: grid;
+    gap: 16px;
+    margin: 18px 0 0;
+}
+
+.help-statuses dt {
+    margin-bottom: 4px;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.help-demo-note {
+    margin: 12px 0 0;
+    padding: 16px 18px;
+    border-radius: 10px;
+    background: var(--blue-light);
+    color: var(--navy);
+    line-height: 1.6;
+}
+
 .site-footer {
     background: var(--navy);
     color: #e6ecf8;
@@ -855,6 +911,15 @@ a {
 
     .card {
         padding: 24px 16px;
+    }
+
+    .help-page {
+        margin-top: 24px;
+        margin-bottom: 36px;
+    }
+
+    .help-card {
+        padding: 28px 20px;
     }
 
     /* Map above the info instead of beside it */
