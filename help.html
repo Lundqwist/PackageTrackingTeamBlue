@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Help and frequently asked questions about tracking packages with Snabb Leverans.">
+    <title>Snabb Leverans AB – Help</title>
+    <link rel="icon" href="data/logo1.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header blue">
+    <div class="header-inner">
+        <a href="index.html" class="logo"><img src="data/logo1.png" alt="Snabb Leverans logo"></a>
+        <div class="brand">
+            <h1>Snabb Leverans AB</h1>
+            <p data-i18n="tagline">Fast. Reliable. Everywhere.</p>
+        </div>
+        <div class="header-actions">
+            <button class="lang-toggle" type="button">EN / SV</button>
+            <a href="index.html" class="home-link">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                <span data-i18n="helpHome">Back to tracking</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="help-page">
+    <section class="card help-card">
+        <div class="card-title">
+            <h2 data-i18n="helpTitle">How can we help?</h2>
+            <p data-i18n="helpIntro">Find quick answers about tracking a package with Snabb Leverans.</p>
+        </div>
+
+        <div class="help-list">
+            <section class="help-item">
+                <h3 data-i18n="helpTrackTitle">Track a package</h3>
+                <p data-i18n="helpTrackText">Go to the home page, enter your Order ID, then select Track. Choose one of the sample IDs shown below the search field to try the demo.</p>
+            </section>
+            <section class="help-item">
+                <h3 data-i18n="helpOrderIdTitle">Where can I find my Order ID?</h3>
+                <p data-i18n="helpOrderIdText">Use the Order ID provided with your shipment. This demo accepts the sample IDs listed on the home page.</p>
+            </section>
+            <section class="help-item">
+                <h3 data-i18n="helpNotFoundTitle">My Order ID was not found</h3>
+                <p data-i18n="helpNotFoundText">Check that you entered the ID correctly. The demo only displays packages included in its sample data; an ID that is not listed there will not return a result.</p>
+            </section>
+            <section class="help-item">
+                <h3 data-i18n="helpStatusesTitle">What do the tracking statuses mean?</h3>
+                <dl class="help-statuses">
+                    <div><dt data-i18n="helpWarehouseTitle">In Warehouse</dt><dd data-i18n="helpWarehouseText">The package is being prepared or stored at a warehouse.</dd></div>
+                    <div><dt data-i18n="helpPickedUpTitle">Picked Up</dt><dd data-i18n="helpPickedUpText">The carrier has collected the package from the sender.</dd></div>
+                    <div><dt data-i18n="helpTransitTitle">In Transit</dt><dd data-i18n="helpTransitText">The package is moving through the delivery network.</dd></div>
+                    <div><dt data-i18n="helpCollectionTitle">At Collection Point</dt><dd data-i18n="helpCollectionText">The package has reached a collection point. Check the carrier's instructions for pickup details.</dd></div>
+                </dl>
+            </section>
+            <section class="help-item">
+                <h3 data-i18n="helpEstimateTitle">Is the estimated delivery time guaranteed?</h3>
+                <p data-i18n="helpEstimateText">No. It is an estimate shown with the sample package data and may change.</p>
+            </section>
+        </div>
+
+        <p class="help-demo-note" data-i18n="helpDemoNote">This project is a demonstration. Its package records are sample data, not live shipment updates.</p>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+        <span data-i18n="rights">© 2026 Snabb Leverans AB. All rights reserved.</span>
+        <nav class="footer-links">
+            <a href="help.html" data-i18n="help">Help</a>
+            <a href="#" data-i18n="terms">Terms of Use</a>
+            <a href="#" data-i18n="contact">Contact Us</a>
+            <a href="#" data-i18n="privacy">Privacy</a>
+        </nav>
+        <span data-i18n="moving">Delivering a better tomorrow.</span>
+    </div>
+</footer>
+<script src="scripts/language.js"></script>
+</body>
+</html>

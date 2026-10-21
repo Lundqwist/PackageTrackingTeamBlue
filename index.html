@@ -13,7 +13,7 @@
     <title>Snabb Leverans AB – Track Your Package</title>
 
     <!-- The small icon in the browser tab. Spaces in file names must be written as %20 in URLs -->
-    <link rel="icon" href="data/package%20tracking%20logo%202.png.png">
+    <link rel="icon" href="data/logo1.png">
 
     <!-- Fonts from Google Fonts: Plus Jakarta Sans for text, Caveat for the handwritten slogan -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,10 +25,10 @@
 <body>
 
 <!-- ===== HEADER: logo, company name and language button ===== -->
-<header class="site-header">
+<header class="site-header blue">
     <div class="header-inner">
         <!-- alt text is read by screen readers and shown if the image fails to load -->
-        <a href="index.html" class="logo"><img src="data/package%20tracking%20logo%202.png.png" alt="Snabb Leverans logo"></a>
+        <a href="index.html" class="logo"><img src="data/logo1.png" alt="Snabb Leverans logo"></a>
         <div class="brand">
             <h1>Snabb Leverans AB</h1>
             <!-- data-i18n="tagline": language.js replaces this text with the chosen language -->
@@ -94,32 +94,38 @@
           CSS Grid (in style.css, .journey) places them in 5 columns.
           The same pin shape (an SVG path) is reused with different fill colors.
         -->
-        <div class="journey">
-            <!-- The dotted orange line behind the pins -->
-            <div class="journey-line"></div>
-            <div class="journey-step">
-                <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#1556c9"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
-                <span data-i18n="closest">Closest to You</span>
-            </div>
-            <div class="journey-step">
-                <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#f26a1b"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
-                <span data-i18n="inTransit">In Transit</span>
-            </div>
-            <div class="journey-logo">
-                <!-- alt="" (empty) because the image is decoration; the logo is already in the header -->
-                <img src="data/package%20tracking%20logo%202.png.png" alt="">
-            </div>
-            <div class="journey-step">
-                <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#f26a1b"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
-                <span data-i18n="outForDelivery">Out for Delivery</span>
-            </div>
-            <div class="journey-step">
-                <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#1556c9"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
-                <span data-i18n="delivered">Delivered</span>
-            </div>
-        </div>
+         
+<div class="journey">
+    <!-- The dotted orange line behind the pins -->
+    <div class="journey-line"></div>
+ 
+   <div class="journey-step journey-step--closest" tabindex="0" style="--pin:#1556c9">
+    <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#1556c9"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
+    <span data-i18n="closest">Closest to You</span>
+</div>
+ 
+    <div class="journey-step" tabindex="0" style="--pin:#f26a1b">
+        <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#f26a1b"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
+        <span data-i18n="inTransit">In Transit</span>
+    </div>
+ 
+    <div class="journey-logo">
+        <!-- alt="" (empty) because the image is decoration; the logo is already in the header -->
+        <img src="data/TruckandParcels.png" alt="">
+    </div>
+ 
+    <div class="journey-step" tabindex="0" style="--pin:#f26a1b">
+        <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#f26a1b"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
+        <span data-i18n="outForDelivery">Out for Delivery</span>
+    </div>
+ 
+    <div class="journey-step" tabindex="0" style="--pin:#1556c9">
+        <svg viewBox="0 0 24 32"><path d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z" fill="#1556c9"/><circle cx="12" cy="12" r="4.5" fill="#fff"/></svg>
+        <span data-i18n="delivered">Delivered</span>
+    </div>
+</div>
 
-        <p class="slogan" data-i18n="slogan">From Your Nearest Hub to Your Door</p>
+        <p class="slogan" data-i18n="slogan">Delivering to your Closest Pickup Point</p>
     </section>
 </main>
 

@@ -359,6 +359,121 @@ a {
     z-index: -1;
 }
 
+/* ===== COPY THE CSS FROM HERE ===== */
+  
+  .journey {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;   /* all pins sit on the same line */
+    gap: 36px;                 /* space between steps and the truck */
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+ 
+  /* The dotted orange line behind the pins */
+  .journey-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 15px;                 /* middle of the pin heads */
+    border-top: 3px dotted #f26a1b;
+    z-index: 0;
+  }
+ 
+  .journey-step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100px;
+    padding: 0 10px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    --pin: #1556c9;            /* label color on hover, set per step in the HTML */
+  }
+ 
+  .journey-step svg {
+    width: 30px;
+    height: 40px;
+    display: block;
+    transform-origin: 50% 100%;   /* the pin grows from its tip */
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+                filter 0.25s ease;
+  }
+ 
+  .journey-step span {
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #1c2430;
+    transition: color 0.2s ease;
+  }
+ 
+  .journey-logo {
+    position: relative;
+    z-index: 1;
+    margin-top: -8px;
+  }
+ 
+  .journey-logo img {
+    display: block;
+    width: 280px;
+    max-width: 100%;
+    height: auto;
+  }
+ 
+  /* Hover movement (mouse only) and keyboard focus */
+  @media (hover: hover) {
+    .journey-step:hover svg {
+      transform: translateY(-8px) scale(1.15);
+      filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.25));
+    }
+    .journey-step:hover span {
+      color: var(--pin);
+    }
+  }
+ 
+  .journey-step:focus-visible svg {
+    transform: translateY(-8px) scale(1.15);
+    filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.25));
+  }
+  .journey-step:focus-visible span {
+    color: var(--pin);
+    text-decoration: underline;
+  }
+ 
+  /* Smaller layout on phones */
+  @media (max-width: 700px) {
+    .journey {
+      gap: 8px;
+    }
+    .journey-step {
+      width: 64px;
+      padding: 0 2px;
+    }
+    .journey-step span {
+      font-size: 0.78rem;
+    }
+    .journey-logo img {
+      width: 120px;
+    }
+  }
+ 
+  /* Respect people who turn animations off */
+  @media (prefers-reduced-motion: reduce) {
+    .journey-step svg,
+    .journey-step span {
+      transition: none;
+    }
+  }
+  /* ===== COPY THE CSS UNTIL HERE ===== */
+
+
 /* @keyframes describes an animation: where the element is at each point in time */
 @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -632,6 +747,62 @@ a {
 
 /* ================= 6. FOOTER ================= */
 
+/* ================= HELP PAGE ================= */
+
+.help-page {
+    width: min(100% - 32px, 900px);
+    margin: 48px auto 64px;
+}
+
+.help-card {
+    padding: 40px;
+}
+
+.help-list {
+    display: grid;
+    gap: 0;
+    margin-top: 32px;
+}
+
+.help-item {
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+}
+
+.help-item h3 {
+    margin: 0 0 10px;
+    color: var(--navy);
+    font-size: 1.1rem;
+}
+
+.help-item p,
+.help-statuses dd {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.help-statuses {
+    display: grid;
+    gap: 16px;
+    margin: 18px 0 0;
+}
+
+.help-statuses dt {
+    margin-bottom: 4px;
+    color: var(--text);
+    font-weight: 700;
+}
+
+.help-demo-note {
+    margin: 12px 0 0;
+    padding: 16px 18px;
+    border-radius: 10px;
+    background: var(--blue-light);
+    color: var(--navy);
+    line-height: 1.6;
+}
+
 .site-footer {
     background: var(--navy);
     color: #e6ecf8;
@@ -755,6 +926,15 @@ a {
 
     .card {
         padding: 24px 16px;
+    }
+
+    .help-page {
+        margin-top: 24px;
+        margin-bottom: 36px;
+    }
+
+    .help-card {
+        padding: 28px 20px;
     }
 
     /* Map above the info instead of beside it */
