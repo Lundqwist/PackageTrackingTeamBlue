@@ -91,7 +91,7 @@ const translations = {
         enterOrderId: "Ange order-ID",
         track: "Spåra",
         tryIds: "Testa ett exempel-ID:",
-        closest: "Närmast dig",
+        closest: "Lagret",
         inTransit: "På väg",
         outForDelivery: "Ute för leverans",
         delivered: "Levererat",
