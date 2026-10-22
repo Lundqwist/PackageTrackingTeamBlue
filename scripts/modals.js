@@ -1,5 +1,6 @@
 /*
-  modals.js - opens and closes the pop-up windows in the footer of index.html:
+  modals.js - opens and closes the pop-up windows in the footer of index.html
+  and status.html:
   "Terms of Use", "Privacy" and "Contact Us".
 
   WHAT IS A MODAL?

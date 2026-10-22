@@ -125,19 +125,65 @@
     <div class="footer-inner">
         <span data-i18n="rights">© 2026 Snabb Leverans AB. All rights reserved.</span>
         <!--
-          href="#" is a placeholder: these links go nowhere yet.
-          On index.html Contact, Terms and Privacy open pop-ups (see modals.js),
-          but this page does not have the pop-ups.
+          Same footer as index.html: Help is a link, Terms, Contact and Privacy
+          are buttons that open the pop-ups below (see modals.js).
         -->
         <nav class="footer-links">
             <a href="help.html" data-i18n="help">Help</a>
-            <a href="#" data-i18n="contact">Contact Us</a>
-            <a href="#" data-i18n="terms">Terms of Use</a>
-            <a href="#" data-i18n="privacy">Privacy</a>
+            <button type="button" class="footer-link-btn" id="termsLink" data-i18n="terms">Terms of Use</button>
+            <button type="button" class="footer-link-btn" id="contactLink" data-i18n="contact">Contact Us</button>
+            <button type="button" class="footer-link-btn" id="privacyLink" data-i18n="privacy">Privacy</button>
         </nav>
-        <span data-i18n="moving">Moving a better tomorrow.</span>
+        <span data-i18n="moving">Delivering a better tomorrow.</span>
     </div>
 </footer>
+
+<!-- ===== POP-UP MODAL WINDOWS (same as index.html, opened by modals.js) ===== -->
+<div id="termsModal"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+    <div
+        style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); color: #333;">
+        <button type="button" class="modal-close"
+            style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-weight: bold; color: #555;"
+            aria-label="Close">×</button>
+        <h3 data-i18n="termsTitle">Terms of Use</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus
+            ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
+            mauris. Fusce nec tellus sed augue semper porta.</p>
+    </div>
+</div>
+
+<div id="privacyModal"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+    <div
+        style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); color: #333;">
+        <button type="button" class="modal-close"
+            style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-weight: bold; color: #555;"
+            aria-label="Close">×</button>
+        <h3 data-i18n="privacyTitle">Privacy Policy</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales ligula in libero. Sed
+            dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor.
+            Maecenas mattis. Sed convallis tristique sem.</p>
+    </div>
+</div>
+
+<div id="contactModal"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center;">
+    <div
+        style="background: white; padding: 2rem; border-radius: 8px; max-width: 500px; width: 90%; position: relative; box-shadow: 0 4px 12px rgba(0,0,0,0.15); color: #333;">
+        <button type="button" class="modal-close"
+            style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; font-weight: bold; color: #555;"
+            aria-label="Close">×</button>
+        <h3 style="margin-top: 0;" data-i18n="contactDetailsTitle">Contact Details</h3>
+        <p><strong>Snabb Leverans AB</strong></p>
+        <p>Drottninggatan 44<br>111 21 Stockholm, Sweden</p>
+        <p>
+            <strong>Phone:</strong> +46 8 123 456 78<br>
+            <strong>Email:</strong> <a href="mailto:support@snabbleverans.se"
+                style="color: #f26a1b; text-decoration: underline;">support@snabbleverans.se</a>
+        </p>
+    </div>
+</div>
 
 <!--
   Load order matters:
@@ -150,6 +196,7 @@
 <script src="scripts/login.js"></script>
 <script src="scripts/packagehandling.js"></script>
 <script src="scripts/maptracking.js"></script>
+<script src="scripts/modals.js"></script>
 <script>
     const orderInput = document.getElementById("orderId");
     const statusMessage = document.getElementById("statusMessage");
