@@ -3,6 +3,8 @@
 A small package tracking website built with plain **HTML, CSS and JavaScript** (no frameworks, no build step).
 Type in an Order ID and see where the package is on a map, when it will arrive, and how far along its journey it has come.
 
+**Live site:** <https://lundqwist.github.io/PackageTrackingTeamBlue/>
+
 The design is based on the mockups in the [data/](data/) folder.
 
 ## Pages
