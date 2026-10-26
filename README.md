@@ -34,6 +34,7 @@ PackageTrackingTeamBlue/
 ├── index.html              Start page (+ the Terms / Privacy / Contact pop-ups)
 ├── status.html             Order status page
 ├── help.html               Help / FAQ page
+├── LICENSE                 MIT License for the website
 ├── css/
 │   └── style.css           All styles for all pages
 ├── scripts/
@@ -110,7 +111,9 @@ To add a package, copy one of the objects in the file, give it a new `packageId`
 - **OpenStreetMap (ODbL):** the map must show the credit *"© OpenStreetMap contributors"*. This is done with the `attribution` option in [scripts/maptracking.js](scripts/maptracking.js) – do not remove it. The public tile servers are for light use only; a real production site should use its own or a paid tile provider.
 - **Fonts (OFL 1.1):** free to use on websites, also commercially. The fonts may not be sold on their own.
 
-The project's own code, images and mockups are made by the team. The project does not have a license of its own yet.
+## License
+
+The website's own code, images and mockups are made by Team Blue and released under the [MIT License](LICENSE). You may use, copy, change and share them, also commercially, as long as the copyright notice and license text are kept. The libraries, map data and fonts above keep their own licenses.
 
 ## Ideas for next steps
 
