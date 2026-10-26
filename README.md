@@ -121,6 +121,7 @@ Team Blue:
 - John K Young – [@JohnKYoung](https://github.com/JohnKYoung)
 - Malarvizhi Raju – [@Malar172](https://github.com/Malar172)
 - Xinlei – [@Xinlei1126](https://github.com/Xinlei1126)
+- Kimlin71 - [@Kimlin71](https://github.com/Kimlin71)
 
 ## License
 
