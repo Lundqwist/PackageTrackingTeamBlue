@@ -111,6 +111,15 @@ To add a package, copy one of the objects in the file, give it a new `packageId`
 - **OpenStreetMap (ODbL):** the map must show the credit *"© OpenStreetMap contributors"*. This is done with the `attribution` option in [scripts/maptracking.js](scripts/maptracking.js) – do not remove it. The public tile servers are for light use only; a real production site should use its own or a paid tile provider.
 - **Fonts (OFL 1.1):** free to use on websites, also commercially. The fonts may not be sold on their own.
 
+## Collaborators
+
+Team Blue:
+
+- Bjarne Lundqwist – [@Lundqwist](https://github.com/Lundqwist)
+- John K Young – [@JohnKYoung](https://github.com/JohnKYoung)
+- Malarvizhi Raju – [@Malar172](https://github.com/Malar172)
+- Xinlei – [@Xinlei1126](https://github.com/Xinlei1126)
+
 ## License
 
 The website's own code, images and mockups are made by Team Blue and released under the [MIT License](LICENSE). You may use, copy, change and share them, also commercially, as long as the copyright notice and license text are kept. The libraries, map data and fonts above keep their own licenses.
