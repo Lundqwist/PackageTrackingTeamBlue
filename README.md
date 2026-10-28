@@ -3,6 +3,8 @@
 A small package tracking website built with plain **HTML, CSS and JavaScript** (no frameworks, no build step).
 Type in an Order ID and see where the package is on a map, when it will arrive, and how far along its journey it has come.
 
+**Live site:** <https://lundqwist.github.io/PackageTrackingTeamBlue/>
+
 The design is based on the mockups in the [data/](data/) folder.
 
 ## Pages
@@ -34,6 +36,7 @@ PackageTrackingTeamBlue/
 ├── index.html              Start page (+ the Terms / Privacy / Contact pop-ups)
 ├── status.html             Order status page
 ├── help.html               Help / FAQ page
+├── LICENSE                 MIT License for the website
 ├── css/
 │   └── style.css           All styles for all pages
 ├── scripts/
@@ -95,11 +98,34 @@ To add a package, copy one of the objects in the file, give it a new `packageId`
 
 **Tip:** to find coordinates, right-click a place in Google Maps or on openstreetmap.org. The first number is the latitude, the second is the longitude.
 
-## Libraries and services used
+## Libraries, services and licenses
 
-- [Leaflet 1.9.4](https://leafletjs.com) – interactive map (loaded from unpkg CDN)
-- [OpenStreetMap](https://www.openstreetmap.org) – map tiles
-- [Google Fonts](https://fonts.google.com) – *Plus Jakarta Sans* and *Caveat*
+| What | Used for | License |
+|------|----------|---------|
+| [Leaflet 1.9.4](https://leafletjs.com) | Interactive map (loaded from the [unpkg](https://unpkg.com) CDN) | [BSD 2-Clause](https://github.com/Leaflet/Leaflet/blob/main/LICENSE) |
+| [OpenStreetMap](https://www.openstreetmap.org) | Map data and tiles | Data: [Open Database License (ODbL) 1.0](https://opendatacommons.org/licenses/odbl/) – © OpenStreetMap contributors. Tile use follows the [OSM Tile Usage Policy](https://operations.osmfoundation.org/policies/tiles/). |
+| [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) (Google Fonts) | Main font on all pages | [SIL Open Font License 1.1](https://openfontlicense.org) |
+| [Caveat](https://fonts.google.com/specimen/Caveat) (Google Fonts) | Handwritten-style text on the start page | [SIL Open Font License 1.1](https://openfontlicense.org) |
+
+**What the licenses ask of us:**
+
+- **Leaflet (BSD 2-Clause):** free to use, also commercially. If we copy Leaflet's files into the project, we must keep its copyright notice and license text.
+- **OpenStreetMap (ODbL):** the map must show the credit *"© OpenStreetMap contributors"*. This is done with the `attribution` option in [scripts/maptracking.js](scripts/maptracking.js) – do not remove it. The public tile servers are for light use only; a real production site should use its own or a paid tile provider.
+- **Fonts (OFL 1.1):** free to use on websites, also commercially. The fonts may not be sold on their own.
+
+## Collaborators
+
+Team Blue:
+
+- Bjarne Lundqwist – [@Lundqwist](https://github.com/Lundqwist)
+- John K Young – [@JohnKYoung](https://github.com/JohnKYoung)
+- Malarvizhi Raju – [@Malar172](https://github.com/Malar172)
+- Xinlei – [@Xinlei1126](https://github.com/Xinlei1126)
+- Kimlin71 - [@Kimlin71](https://github.com/Kimlin71)
+
+## License
+
+The website's own code, images and mockups are made by Team Blue and released under the [MIT License](LICENSE). You may use, copy, change and share them, also commercially, as long as the copyright notice and license text are kept. The libraries, map data and fonts above keep their own licenses.
 
 ## Ideas for next steps
 

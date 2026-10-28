@@ -825,13 +825,15 @@ a {
 .help-item h3 {
     margin: 0 0 10px;
     color: var(--navy);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    font-weight: 700;
 }
 
 .help-item p,
 .help-statuses dd {
     margin: 0;
-    color: var(--muted);
+    color: var(--text);
+    font-size: 1rem;
     line-height: 1.7;
 }
 
