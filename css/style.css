@@ -461,14 +461,15 @@ a {
   .journey-logo {
     position: relative;
     z-index: 1;
-    margin-top: 4px;
+    margin-top: 40px;
   }
  
   .journey-logo img {
     display: block;
-    width: 280px;
-    max-width: 100%;
+    width: 500px;
+    max-width: none;
     height: auto;
+    
   }
  
   /* Hover movement: the pin jumps up and grows a little.
