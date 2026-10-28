@@ -12,8 +12,10 @@
     <!-- UTF-8 lets us use Swedish letters like å, ä, ö -->
     <meta charset="UTF-8">
     <!-- Makes the page fit the screen width on phones instead of zooming out -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snabb Leverans AB – Track Your Package</title>
+    
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <title>Snabb Leverans AB – Track Your Package</title>
 
     <!-- The small icon in the browser tab (a "favicon") -->
     <link rel="icon" href="data/logo1.png">
@@ -55,7 +57,7 @@
           aria-hidden="true" tells screen readers to skip it, as it is only decoration.
           preserveAspectRatio="none" lets the drawing stretch to the full page width.
         -->
-            <svg class="skyline" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+            
                 <g fill="#b9cdeb" opacity="0.55">
                     <rect x="10" y="60" width="28" height="160" />
                     <rect x="42" y="100" width="40" height="120" />
@@ -109,7 +111,9 @@
             <!-- Empty at first; JavaScript writes error messages here -->
             <p class="form-message" id="formMessage"></p>
             <!-- JavaScript adds a button for each sample package id here -->
-            <div class="sample-ids" id="sampleIds"><span data-i18n="tryIds">Try a sample ID:</span></div>
+           <div class="sample-ids" id="sampleIds">
+              <span class="sample-label" data-i18n="tryIds">
+                Try a sample ID:</span></div>
 
             <!--
           The illustrated journey: 4 pins with the truck picture in the middle.

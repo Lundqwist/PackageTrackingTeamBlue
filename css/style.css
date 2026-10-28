@@ -179,28 +179,51 @@ a {
 .hero {
     position: relative;
     overflow: hidden;
+    min-height: 100vh;
+
+    background-image: url("../data/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     text-align: center;
-    padding: 56px 16px 48px;
-    background: linear-gradient(180deg, #dce9fb 0%, #f1f6fd 55%, #f7f9fd 100%);
+    padding: 20px 16px 48px;
 }
 
-/* position: absolute takes the skyline out of the normal flow and places it
-   relative to .hero. pointer-events: none lets clicks pass through it. */
+
+
+
 .skyline {
     position: absolute;
     left: 0;
-    right: 0;
     bottom: 120px;
     width: 100%;
     height: 220px;
-    pointer-events: none;
+    z-index: 1;
+    opacity: 0.45;
 }
+.hero h2,
+.hero-text,
+.search-form,
+.sample-ids,
+.journey,
+.slogan {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* position: absolute takes the skyline out of the normal flow and places it
+   relative to .hero. pointer-events: none lets clicks pass through it. */
+
+
 
 /* Every direct child of .hero except the skyline gets position: relative,
    which makes them draw ON TOP of the absolutely positioned skyline. */
 .hero > *:not(.skyline) {
     position: relative;
 }
+ 
 
 /* clamp(min, preferred, max): the size follows the screen width (6vw = 6% of
    the viewport width) but never gets smaller than 2.2rem or larger than 4.2rem. */
@@ -286,15 +309,15 @@ a {
 }
 
 /* flex-wrap: wrap lets the sample-id buttons flow onto a new line */
-.sample-ids {
-    margin-top: 4px;
-    color: var(--muted);
-    font-size: 0.95rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
+.sample-label {
+    font: inherit;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px 12px;
+    color: #f26a1b; /* Orange */
+    font-weight: 600;
 }
 
 .sample-ids button {
@@ -302,11 +325,12 @@ a {
     font-size: 0.85rem;
     background: rgba(255, 255, 255, 0.85);
     border: 1px solid var(--border);
-    border-radius: 999px; /* a very large radius = pill shape */
+    border-radius: 999px;
     padding: 4px 12px;
-    color: var(--blue);
+    color: #1556c9; /* Blue */
     cursor: pointer;
 }
+
 
 .sample-ids button:hover {
     border-color: var(--blue);
@@ -333,14 +357,14 @@ a {
     font-weight: 600;
     color: var(--navy);
     position: relative;
+    animation: pinBounce 2s infinite;
 }
+
+
 
 /* :nth-child(2) = the 2nd child of its parent. Moving pins 2 and 4 up a bit
    makes the route look like a wave, as in the design. */
-.journey-step:nth-child(2),
-.journey-step:nth-child(4) {
-    top: -30px;
-}
+
 
 .journey-step svg {
     width: 44px;
@@ -350,8 +374,10 @@ a {
 
 /* The logo slowly floats up and down using the "float" animation below */
 .journey-logo img {
-    width: 100%;
-    max-width: 300px;
+    display: block;
+    width: 280%;
+    max-width: 100px;
+    height: auto;
     animation: float 4s ease-in-out infinite;
 }
 
@@ -425,10 +451,13 @@ a {
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.25;
-    color: #1c2430;
+    color: #02050c;
     transition: color 0.2s ease;
   }
  
+  .journey-step:hover svg path {
+    fill: #ff9500;
+}
   .journey-logo {
     position: relative;
     z-index: 1;
