@@ -179,14 +179,20 @@ a {
 .hero {
     position: relative;
     overflow: hidden;
-    /* No min-height here: the hero ends just under the slogan, and
-       "center bottom" lines up the road in the picture with the bottom of
-       the hero, so the truck stands on the ground.
-       The gradient on top fades the road into the color below the hero. */
+    /* No min-height here: the hero ends just under the slogan.
+       The gradient on top fades the road into the color below the hero.
+       The picture is placed so the top edge of the road (72.5% down the
+       picture) is level with the middle of the truck, about 266px above the
+       bottom of the hero. The picture is 1.5 times wider than tall, so the
+       road edge is 18.36vw above the picture's bottom (but at least 199px,
+       because "cover" never makes the picture shorter than the hero).
+       "bottom X" moves the picture X up from the bottom; a negative X moves
+       it down. */
     background-image: linear-gradient(to bottom, transparent 75%, #8ea9d4 100%),
                       url("../data/background.png");
     background-size: cover;
-    background-position: center bottom;
+    background-position: center bottom,
+                         center bottom calc(266px - max(18.36vw, 199px));
     background-repeat: no-repeat;
 
     text-align: center;
@@ -939,6 +945,11 @@ main:has(> .hero) {
 @media (max-width: 800px) {
     .header-inner {
         padding: 10px 16px;
+    }
+
+    /* The truck is much smaller here, so just keep the road at the bottom */
+    .hero {
+        background-position: center bottom;
     }
 
     .logo img {
