@@ -179,11 +179,14 @@ a {
 .hero {
     position: relative;
     overflow: hidden;
-    min-height: 100vh;
-
-    background-image: url("../data/background.png");
+    /* No min-height here: the hero ends just under the slogan, and
+       "center bottom" lines up the road in the picture with the bottom of
+       the hero, so the truck stands on the ground.
+       The gradient on top fades the road into the color below the hero. */
+    background-image: linear-gradient(to bottom, transparent 75%, #8ea9d4 100%),
+                      url("../data/background.png");
     background-size: cover;
-    background-position: center;
+    background-position: center bottom;
     background-repeat: no-repeat;
 
     text-align: center;
@@ -192,6 +195,13 @@ a {
 
 
 
+
+/* On tall screens the hero ends before the footer. main:has(> .hero) = the
+   <main> that contains the hero (only the start page); its background is the
+   same blue-grey as the bottom of the road, so the gap blends in. */
+main:has(> .hero) {
+    background-color: #8ea9d4;
+}
 
 .skyline {
     position: absolute;
@@ -458,10 +468,12 @@ a {
   .journey-step:hover svg path {
     fill: #ff9500;
 }
+  /* margin-top puts the truck just under the dotted line; the "float"
+     animation lifts it 10px so it covers the line a little at the top */
   .journey-logo {
     position: relative;
     z-index: 1;
-    margin-top: 40px;
+    margin-top: 5px;
   }
  
   .journey-logo img {
